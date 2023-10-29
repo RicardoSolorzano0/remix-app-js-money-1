@@ -1,10 +1,11 @@
-import { FaLock } from 'react-icons/fa';
+// import { FaLock } from 'react-icons/fa';
 
 function AuthForm() {
   return (
     <form method="post" className="form" id="auth-form">
       <div className="icon-img">
-        <FaLock />
+        icon?
+        {/* <FaLock /> */}
       </div>
       <p>
         <label htmlFor="email">Email Address</label>
