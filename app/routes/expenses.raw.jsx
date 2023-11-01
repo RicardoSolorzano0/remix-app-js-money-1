@@ -1,7 +1,3 @@
-export default function ExpensesRaw(){
-    return(
-        <>
-        Expenses raw
-        </>
-    )
+export default function ExpensesRaw() {
+  return <>Expenses raw</>;
 }

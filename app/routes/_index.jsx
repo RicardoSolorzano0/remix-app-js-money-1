@@ -1,4 +1,5 @@
-import { Link } from '@remix-run/react';
+import { Link } from "@remix-run/react";
+import marketingStyles from "../styles/marketing.css";
 // import { FaArrowRight, FaDollarSign, FaChartBar } from 'react-icons/fa';
 
 export default function Index() {
@@ -12,7 +13,10 @@ export default function Index() {
         </header>
         <div className="marketing-content">
           <div className="marketing-image">
-            <img src="images/expenses-management.jpg" alt="A list of expenses." />
+            <img
+              src="images/expenses-management.jpg"
+              alt="A list of expenses."
+            />
           </div>
           <div className="marketing-explanation">
             <p>Manage your expenses in one central place.</p>
@@ -33,7 +37,7 @@ export default function Index() {
           <h2>Detailed Analytics</h2>
         </header>
         <div className="marketing-content">
-          <p className='marketing-explanation'>
+          <p className="marketing-explanation">
             Benefit from best-in-class analytics to understand your spending
             patterns.
           </p>
@@ -46,4 +50,6 @@ export default function Index() {
   );
 }
 
-export function meta() {}
+export function links() {
+  return [{ rel: "stylesheet", href: marketingStyles }];
+}
