@@ -5,8 +5,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "@remix-run/react";
-import MainHeader from "./components/navigation/MainHeader"
+import MainHeader from "./components/navigation/MainHeader";
 import sharedStyles from "./styles/shared.css";
 
 export function links() {
@@ -14,6 +15,7 @@ export function links() {
 }
 
 export default function App() {
+  const path = useLocation();
   return (
     <html lang="en">
       <head>
@@ -31,7 +33,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <MainHeader/>
+        {path.pathname === "/" ? <MainHeader /> : null}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
