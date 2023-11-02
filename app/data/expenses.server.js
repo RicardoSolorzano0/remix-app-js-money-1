@@ -14,3 +14,13 @@ export async function addExpense(expenseData) {
     throw e;
   }
 }
+
+export async function getExpenses(expenseData) {
+  try {
+    // here find many arguments for find modify and elimanted documents
+    return await prisma.expense.findMany({ orderBy: { date: "desc" } });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
