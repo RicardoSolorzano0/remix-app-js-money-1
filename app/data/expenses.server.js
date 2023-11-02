@@ -2,10 +2,10 @@ import { prisma } from "./database.server";
 
 export async function addExpense(expenseData) {
   try {
-    return await prisma.expenses.create({
+    return await prisma.expense.create({
       data: {
         title: expenseData.title,
-        amount: expenseData.amount,
+        amount: +expenseData.amount,
         date: new Date(expenseData.date),
       },
     });
