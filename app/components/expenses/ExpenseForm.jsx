@@ -48,7 +48,7 @@ function ExpenseForm() {
   // }
   return (
     <Form
-      method="post"
+      method={expenseData ? "PATCH" : "POST"}
       className="form"
       id="expense-form"
       // onSubmit={submitHandler}
