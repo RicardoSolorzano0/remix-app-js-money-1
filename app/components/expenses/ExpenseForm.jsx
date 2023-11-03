@@ -3,12 +3,21 @@ import {
   useActionData,
   Form,
   useNavigation,
-  useLoaderData,
+  useMatches,
+  useParams,
+  // useLoaderData,
 } from "@remix-run/react";
 
 function ExpenseForm() {
   const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
-  const expenseData = useLoaderData();
+  // const expenseData = useLoaderData();
+  const params = useParams();
+  const matches = useMatches();
+  const expensesData = matches.find(
+    (match) => match.id === "routes/expenses"
+  ).data;
+  const expenseData = expensesData.find((expense) => expense.id === params.id);
+
   const validationErrors = useActionData();
   const navigation = useNavigation();
 
