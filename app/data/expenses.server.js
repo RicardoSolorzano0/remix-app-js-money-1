@@ -15,10 +15,19 @@ export async function addExpense(expenseData) {
   }
 }
 
-export async function getExpenses(expenseData) {
+export async function getExpenses() {
   try {
     // here find many arguments for find modify and elimanted documents
     return await prisma.expense.findMany({ orderBy: { date: "desc" } });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
+
+export async function getExpense(id) {
+  try {
+    return await prisma.expense.findFirst({ where: { id: id } });
   } catch (e) {
     console.log(e);
     throw e;
