@@ -20,6 +20,7 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
+        <title>Remix money</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
