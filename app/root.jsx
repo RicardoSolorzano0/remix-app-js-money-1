@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -6,21 +7,24 @@ import {
   Scripts,
   ScrollRestoration,
   useLocation,
+  isRouteErrorResponse,
+  useRouteError,
 } from "@remix-run/react";
 import MainHeader from "./components/navigation/MainHeader";
 import sharedStyles from "./styles/shared.css";
+import Error from "./components/util/Error";
 
 export function links() {
   return [{ rel: "stylesheet", href: sharedStyles }];
 }
 
-export default function App() {
+function Document({ title, children }) {
   const path = useLocation();
   return (
     <html lang="en">
       <head>
         <Meta />
-        <title>Remix money</title>
+        <title>{title}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -35,11 +39,37 @@ export default function App() {
       </head>
       <body>
         {path.pathname === "/" ? <MainHeader /> : null}
-        <Outlet />
+        {children}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function App() {
+  return (
+    <Document>
+      <Outlet></Outlet>
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  return (
+    <Document title={"An error occurred"}>
+      <main>
+        <Error title={"An error occurred"}>
+          <p>{error.Error || "Something went wrong. Please try again"}</p>
+          {isRouteErrorResponse}
+          <p>
+            Back to <Link to="/">safety</Link>.
+          </p>
+        </Error>
+      </main>
+    </Document>
   );
 }

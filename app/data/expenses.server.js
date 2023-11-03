@@ -10,8 +10,7 @@ export async function addExpense(expenseData) {
       },
     });
   } catch (e) {
-    console.log(e);
-    throw e;
+    throw new Error("Failed to add expense");
   }
 }
 
@@ -20,8 +19,7 @@ export async function getExpenses() {
     // here find many arguments for find modify and elimanted documents
     return await prisma.expense.findMany({ orderBy: { date: "desc" } });
   } catch (e) {
-    console.log(e);
-    throw e;
+    throw new Error("Failed to delete expenses");
   }
 }
 
@@ -29,8 +27,7 @@ export async function getExpense(id) {
   try {
     return await prisma.expense.findFirst({ where: { id: id } });
   } catch (e) {
-    console.log(e);
-    throw e;
+    throw new Error("Failed to get expense");
   }
 }
 
@@ -45,8 +42,7 @@ export async function updateExpense(id, expenseData) {
       },
     });
   } catch (e) {
-    console.log(e);
-    throw e;
+    throw new Error("Failed to update expense");
   }
 }
 
@@ -56,7 +52,6 @@ export async function deleteExpense(id) {
       where: { id: id },
     });
   } catch (e) {
-    console.log(e);
-    throw e;
+    throw new Error("Failed to delete expense");
   }
 }
