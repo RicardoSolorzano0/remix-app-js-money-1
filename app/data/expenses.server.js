@@ -19,7 +19,7 @@ export async function getExpenses() {
     // here find many arguments for find modify and elimanted documents
     return await prisma.expense.findMany({ orderBy: { date: "desc" } });
   } catch (e) {
-    throw new Error("Failed to delete expenses");
+    throw new Error("Failed to get expenses");
   }
 }
 
