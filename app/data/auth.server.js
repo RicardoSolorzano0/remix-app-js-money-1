@@ -11,6 +11,6 @@ export async function signup({ email, password }) {
     error.status = 422;
     throw error;
   }
-  const passwordHash = await bcrypt.hash("myPassword", 10);
+  const passwordHash = await bcrypt.hash(password, 10);
   await prisma.user.create({ data: { email: email, password: passwordHash } });
 }
