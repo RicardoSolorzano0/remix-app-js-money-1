@@ -3,6 +3,7 @@ import Chart from "../components/expenses/Chart";
 import ExpenseStatistics from "../components/expenses/ExpenseStatistics";
 import { getExpenses } from "../data/expenses.server";
 import marketingStyles from "../styles/marketing.css";
+import { requireUserSession } from "../data/auth.server";
 
 export default function ExpensesAnalysisPage() {
   const expenses = useLoaderData();
@@ -34,7 +35,9 @@ export function links() {
   return [{ rel: "stylesheet", href: marketingStyles }];
 }
 
-export async function loader() {
+export async function loader({ request }) {
+  await requireUserSession(request);
+
   const expenses = await getExpenses();
   return expenses;
 }

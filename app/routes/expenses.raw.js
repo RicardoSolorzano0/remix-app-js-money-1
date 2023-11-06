@@ -1,3 +1,5 @@
+import { requireUserSession } from "../data/auth.server";
+
 const DUMMY_EXPENSES = [
   {
     id: "e1",
@@ -14,6 +16,7 @@ const DUMMY_EXPENSES = [
 ];
 
 //if only loader in the file, load the data in the viewport
-export function loader() {
+export async function loader({ require }) {
+  await requireUserSession(require);
   return DUMMY_EXPENSES;
 }
