@@ -2,6 +2,7 @@ import { Link, Outlet, useLoaderData, useLocation } from "@remix-run/react";
 import ExpensesList from "../components/expenses/ExpensesList";
 import expensesStyle from "../styles/expenses.css";
 import { getExpenses } from "../data/expenses.server";
+import { requireUserSession } from "../data/auth.server";
 
 export default function ExpensesLayout() {
   const path = useLocation();
@@ -38,7 +39,9 @@ export default function ExpensesLayout() {
   );
 }
 
-export async function loader() {
+export async function loader({ request }) {
+  await requireUserSession(request);
+
   const expenses = await getExpenses();
   return expenses;
 }

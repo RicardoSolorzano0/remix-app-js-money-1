@@ -32,3 +32,9 @@ export async function action({ request }) {
   await addExpense(expenseData);
   return redirect("/expenses");
 }
+
+//testing that it always loads even if the route is protected
+// export function loader() {
+//   console.log("add loader");
+//   return null;
+// }

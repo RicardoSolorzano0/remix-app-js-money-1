@@ -10,7 +10,6 @@ import Logo from "../util/Logo";
 function MainHeader() {
   const userId = useLoaderData();
   const location = useLocation();
-  console.log("veamos en donde estamos en todo momento", location);
 
   return (
     <header id="main-header">
