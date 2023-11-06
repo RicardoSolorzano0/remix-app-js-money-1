@@ -24,6 +24,30 @@ async function createUserSession(userId, redirectPath) {
   });
 }
 
+export async function getUserFromSession(request) {
+  const session = await sessionStorage.getSession(
+    request.headers.get("Cookie")
+  );
+
+  const userId = session.get("userId");
+
+  if (!userId) {
+    return null;
+  }
+
+  return userId;
+}
+
+export async function destroyUserSession(request) {
+  const session = await sessionStorage.getSession(
+    request.headers.get("Cookie")
+  );
+
+  return redirect("/", {
+    headers: { "Set-Cookie": await sessionStorage.destroySession(session) },
+  });
+}
+
 export async function signup({ email, password }) {
   const existingUser = await prisma.user.findFirst({ where: { email } });
 

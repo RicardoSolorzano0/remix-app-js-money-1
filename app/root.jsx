@@ -13,6 +13,7 @@ import {
 import MainHeader from "./components/navigation/MainHeader";
 import sharedStyles from "./styles/shared.css";
 import Error from "./components/util/Error";
+import { getUserFromSession } from "./data/auth.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: sharedStyles }];
@@ -54,6 +55,10 @@ export default function App() {
       <Outlet></Outlet>
     </Document>
   );
+}
+
+export function loader({ request }) {
+  return getUserFromSession(request);
 }
 
 export function ErrorBoundary() {

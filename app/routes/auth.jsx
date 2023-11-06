@@ -1,4 +1,3 @@
-import { redirect } from "@remix-run/node";
 import AuthForm from "../components/auth/AuthForm";
 import MainHeader from "../components/navigation/MainHeader";
 import { login, signup } from "../data/auth.server";
