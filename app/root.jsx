@@ -39,7 +39,7 @@ function Document({ title, children }) {
         <Links />
       </head>
       <body>
-        {path.pathname === "/" ? <MainHeader /> : null}
+        <MainHeader />
         {children}
         <ScrollRestoration />
         <Scripts />

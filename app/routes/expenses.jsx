@@ -1,7 +1,6 @@
 import { Link, Outlet, useLoaderData, useLocation } from "@remix-run/react";
 import ExpensesList from "../components/expenses/ExpensesList";
 import expensesStyle from "../styles/expenses.css";
-import ExpensesHeader from "../components/navigation/ExpensesHeader";
 import { getExpenses } from "../data/expenses.server";
 
 export default function ExpensesLayout() {
@@ -10,7 +9,6 @@ export default function ExpensesLayout() {
   const hasExpenses = expenses && expenses.length > 0;
   return (
     <>
-      <ExpensesHeader />
       <Outlet />
       {path.pathname !== "/expenses/analysis" ? (
         <main>

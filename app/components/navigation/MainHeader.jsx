@@ -1,26 +1,47 @@
-import { Link, NavLink, useLoaderData, Form } from "@remix-run/react";
+import {
+  Link,
+  NavLink,
+  useLoaderData,
+  Form,
+  useLocation,
+} from "@remix-run/react";
 import Logo from "../util/Logo";
 
 function MainHeader() {
   const userId = useLoaderData();
-
-  console.log("me invocaron desde aqui", userId);
+  const location = useLocation();
+  console.log("veamos en donde estamos en todo momento", location);
 
   return (
     <header id="main-header">
       <Logo />
       <nav id="main-nav">
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/pricing">Pricing</NavLink>
-          </li>
-          {/* <li>
+        {location.pathname !== "/expenses" ? (
+          <>
+            <ul>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/pricing">Pricing</NavLink>
+              </li>
+              {/* <li>
             <NavLink to="/expenses">Expenses</NavLink>
           </li> */}
-        </ul>
+            </ul>
+          </>
+        ) : (
+          <ul>
+            <li>
+              <NavLink to="/expenses" end>
+                Manage Expenses
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/expenses/analysis">Analyze Expenses</NavLink>
+            </li>
+          </ul>
+        )}
       </nav>
       <nav id="cta-nav">
         <ul>
