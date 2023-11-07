@@ -21,6 +21,10 @@ function ExpenseForm() {
   const validationErrors = useActionData();
   const navigation = useNavigation();
 
+  if (params.id && !expenseData) {
+    return <p>Invalid expense id</p>;
+  }
+
   const defaultValues = expenseData
     ? {
         title: expenseData.title,

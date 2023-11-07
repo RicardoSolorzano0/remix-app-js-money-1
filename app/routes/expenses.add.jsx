@@ -4,6 +4,7 @@ import Modal from "../components/util/Modal";
 import { addExpense } from "../data/expenses.server";
 import { redirect } from "@remix-run/node";
 import { validateExpenseInput } from "../data/validation.server";
+import { requireUserSession } from "../data/auth.server";
 
 export default function ExpensesAdd() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function ExpensesAdd() {
 }
 
 export async function action({ request }) {
+  const userId = await requireUserSession(request);
   const formData = await request.formData();
   const expenseData = Object.fromEntries(formData);
 
@@ -29,6 +31,12 @@ export async function action({ request }) {
     return err;
   }
 
-  await addExpense(expenseData);
+  await addExpense(expenseData, userId);
   return redirect("/expenses");
 }
+
+//testing that it always loads even if the route is protected
+// export function loader() {
+//   console.log("add loader");
+//   return null;
+// }

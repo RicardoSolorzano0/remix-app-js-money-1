@@ -44,3 +44,27 @@ export async function action({ params, request }) {
     return redirect("/expenses");
   }
 }
+
+// export function meta({ params, location, data, parentsData }) {
+//   //windows.location
+
+//   console.log(params, location, data, parentsData, "ojo con esta parte");
+//   const expense = parentsData["routes/_app/expenses"].find(
+//     (expense) => expense.id === params.id
+//   );
+//   return [
+//     { title: expense.title },
+//     { name: "description", content: "First paginate" },
+//     // { property: "og:title", content: "..." },
+
+//     // // you can now add SEO related <links>
+//     // { tagName: "link", rel: "canonical", href: "..." },
+
+//     // // and <script type=ld+json>
+//     // {
+//     //   "script:ld+json": {
+//     //     some: "value",
+//     //   },
+//     // },
+//   ];
+// }
