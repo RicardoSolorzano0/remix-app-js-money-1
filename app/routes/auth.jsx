@@ -35,3 +35,9 @@ export async function action({ request }) {
 export function links() {
   return [{ rel: "stylesheet", href: authStyles }];
 }
+
+export function headers() {
+  return {
+    "Cache-Control": "max-age=3600", //60 minutes
+  };
+}
