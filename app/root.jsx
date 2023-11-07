@@ -6,7 +6,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
   isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
@@ -19,13 +18,30 @@ export function links() {
   return [{ rel: "stylesheet", href: sharedStyles }];
 }
 
+export function meta() {
+  return [
+    { title: "MoneyApp" },
+    { name: "description", content: "First paginate" },
+    // { property: "og:title", content: "..." },
+
+    // // you can now add SEO related <links>
+    // { tagName: "link", rel: "canonical", href: "..." },
+
+    // // and <script type=ld+json>
+    // {
+    //   "script:ld+json": {
+    //     some: "value",
+    //   },
+    // },
+  ];
+}
+
 function Document({ title, children }) {
-  const path = useLocation();
   return (
     <html lang="en">
       <head>
         <Meta />
-        <title>{title}</title>
+        <title>Remix Money</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

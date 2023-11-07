@@ -50,6 +50,24 @@ export default function Index() {
   );
 }
 
+export function meta() {
+  return [
+    { title: "Paginate Index" },
+    { name: "description", content: "Manage your expenses with ease" },
+    // { property: "og:title", content: "..." },
+
+    // // you can now add SEO related <links>
+    // { tagName: "link", rel: "canonical", href: "..." },
+
+    // // and <script type=ld+json>
+    // {
+    //   "script:ld+json": {
+    //     some: "value",
+    //   },
+    // },
+  ];
+}
+
 export function links() {
   return [{ rel: "stylesheet", href: marketingStyles }];
 }
