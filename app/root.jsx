@@ -58,6 +58,7 @@ function Document({ title, children }) {
         <MainHeader />
         {children}
         <ScrollRestoration />
+        {/* eliminate this for performing and disable js */}
         <Scripts />
         <LiveReload />
       </body>
