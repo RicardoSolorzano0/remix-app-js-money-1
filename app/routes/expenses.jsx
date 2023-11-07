@@ -3,7 +3,6 @@ import ExpensesList from "../components/expenses/ExpensesList";
 import expensesStyle from "../styles/expenses.css";
 import { getExpenses } from "../data/expenses.server";
 import { requireUserSession } from "../data/auth.server";
-import { json } from "@remix-run/node";
 
 export default function ExpensesLayout() {
   const path = useLocation();
@@ -44,17 +43,29 @@ export async function loader({ request }) {
   const userId = await requireUserSession(request);
 
   const expenses = await getExpenses(userId);
-  return json(expenses, {
-    headers: { "Cache-Control": "max-age=3" },
-  });
+  return expenses;
 }
 
 export function links() {
   return [{ rel: "stylesheet", href: expensesStyle }];
 }
 
-export function headers({ actionHeaders, loaderHeaders, parentHeaders }) {
-  return {
-    "Cache-Control": loaderHeaders.parentHeaders.get("Cache-Control"), // 60 minutos
-  };
-}
+//other form of do
+// export async function loader({ request }) {
+//   const userId = await requireUserSession(request);
+
+//   const expenses = await getExpenses(userId);
+//   return json(expenses, {
+//     headers: { "Cache-Control": "max-age=3" },
+//   });
+// }
+
+// export function links() {
+//   return [{ rel: "stylesheet", href: expensesStyle }];
+// }
+
+// export function headers({ actionHeaders, loaderHeaders, parentHeaders }) {
+//   return {
+//     "Cache-Control": loaderHeaders.parentHeaders.get("Cache-Control"), // 60 minutos
+//   };
+// }
